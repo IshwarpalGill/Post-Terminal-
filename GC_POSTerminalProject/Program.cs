@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace GC_POSTerminalProject
 {
@@ -6,7 +7,12 @@ namespace GC_POSTerminalProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            List<Product> productList = Product.GetProductList();
+
+            foreach (var product in productList)
+            {
+                Console.WriteLine(product.Name);
+            }
         }
     }
 }
