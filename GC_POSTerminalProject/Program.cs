@@ -27,7 +27,7 @@ namespace GC_POSTerminalProject
 
                 DisplayActionList();
 
-                inputValue = int.Parse(Console.ReadLine());
+                inputValue = Validation.ValidInput(Console.ReadLine());
 
                 if (inputValue == 1)
                 {
@@ -45,14 +45,14 @@ namespace GC_POSTerminalProject
                         }
 
                         Console.WriteLine("\nPlease add an item to your cart by typing in the number to the left of the item");
-                        itemSelected = int.Parse(Console.ReadLine());
+                        itemSelected = Validation.ValItemFromList(Console.ReadLine());
                         Console.WriteLine("How many would you like to add?");
-                        quantity = int.Parse(Console.ReadLine());
+                        quantity = Validation.ValidAmount();
 
                         shoppingCart.Add(AddToCart(productList, itemSelected, quantity));
 
                         Console.WriteLine("continue shopping or checkout");
-                        continueShopping = bool.Parse(Console.ReadLine());
+                        continueShopping = Validation.ToContinue(Console.ReadLine());
                     } while (continueShopping == true);
 
                     foreach (var item in shoppingCart)
