@@ -17,7 +17,7 @@ namespace GC_POSTerminalProject
                 try
                 {
                     inputNum = int.Parse(input);
-                    if (inputNum > 3)
+                    if (inputNum > 3 || inputNum < 1)
                     {
                         Console.WriteLine("Please choose a number 1-3");
                         input = Console.ReadLine();
@@ -54,14 +54,22 @@ namespace GC_POSTerminalProject
                 {
                     item = int.Parse(input);
                     //again = false;
-                    return item;
+                    if (item > 15 || item < 1)
+                    {
+                        Console.WriteLine("Please choose an item 1-15");
+                        input = Console.ReadLine();
+                    }
+                    else
+                    {
+                        return item;
+                    }
                 }
-                catch (IndexOutOfRangeException)
-                {
-                    Console.WriteLine("That item does not exist. Please enter a number 1-15.");
-                    input = Console.ReadLine();
-                    //again = true;
-                }
+                //catch (IndexOutOfRangeException)
+                //{
+                //    Console.WriteLine("That item does not exist. Please enter a number 1-15.");
+                //    input = Console.ReadLine();
+                //    //again = true;
+                //}
                 catch (FormatException)
                 {
                     Console.WriteLine("Please enter only a number 1-15.");
@@ -99,6 +107,11 @@ namespace GC_POSTerminalProject
                     if (amount > 10)
                     {
                         Console.WriteLine("Please choose an item less than 10");
+                        amountString = Console.ReadLine();
+                    }
+                    else if (amount < 1)
+                    {
+                        Console.WriteLine("Please choose a greater amount");
                         amountString = Console.ReadLine();
                     }
                     else
