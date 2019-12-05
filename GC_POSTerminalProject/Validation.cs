@@ -104,9 +104,14 @@ namespace GC_POSTerminalProject
                 try
                 {
                     amount = int.Parse(amountString);
-                    if (amount > 10 || amount < 1)
+                    if (amount > 10)
                     {
                         Console.WriteLine("Please choose an item less than 10");
+                        amountString = Console.ReadLine();
+                    }
+                    else if (amount < 1)
+                    {
+                        Console.WriteLine("Please choose a greater amount");
                         amountString = Console.ReadLine();
                     }
                     else
