@@ -7,6 +7,42 @@ namespace GC_POSTerminalProject
 {
     class Validation
     {
+        //Validation for what you want to do
+        public static int ValidInput(string input)
+        {
+            int inputNum = 0;
+
+            while (true)
+            {
+                try
+                {
+                    inputNum = int.Parse(input);
+                    if (inputNum > 3)
+                    {
+                        Console.WriteLine("Please choose a number 1-3");
+                        input = Console.ReadLine();
+                    }
+                    else
+                    {
+                        return inputNum;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please type a number 1-3");
+                    input = Console.ReadLine();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please choose a number");
+                    input = Console.ReadLine();
+                }
+            }
+
+        }
+
+
+
         // Validation for what items are wanted
         public static int ValItemFromList(string input)
         {
@@ -53,7 +89,7 @@ namespace GC_POSTerminalProject
         {
             string amountString = Console.ReadLine();
             int amount = 0;
-            
+
 
             while (true)
             {
@@ -83,6 +119,36 @@ namespace GC_POSTerminalProject
             }
         }
 
+        //Validation continue shopping or checkout
+        public static bool ToContinue(string input)
+        {
+            string wtd = input;
+            while (true)
+            {
+                try
+                {
+                    if (input.ToLower() == "continue")
+                    {
+                        return true;
+                    }
+                    else if (input.ToLower() == "checkout")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please choose Continue or Checkout");
+                        input = Console.ReadLine();
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please choose Continue or Checkout");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
         //validation for payment type
         public static string ValidPaymentType(string paymentType)
         {
@@ -91,7 +157,7 @@ namespace GC_POSTerminalProject
             {
                 try
                 {
-                    if (pt.ToLower() == "cash" || pt.ToLower() == "check" || pt.ToLower() == "credit card")
+                    if (pt.ToLower() == "cash" || pt.ToLower() == "check" || pt.ToLower() == "credit card" || pt.ToLower() == "credit" || pt.ToLower() == "card")
                     {
                         return pt.ToLower();
 
@@ -107,6 +173,36 @@ namespace GC_POSTerminalProject
                     Console.WriteLine("Please enter cash, check, or credit card");
                     pt = Console.ReadLine();
                 }
+            }
+
+        }
+
+        public static decimal ValidCash(string amount)
+        {
+            decimal cash = 0;
+
+            while (true)
+            {
+                try
+                {
+                    cash = decimal.Parse(amount);
+                    Match getCash = Regex.Match(amount, @"^[0-9]+(\.[0-9]{1,2})?$");
+                    if (getCash.Success)
+                    {
+                        return cash;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid amount in the following format: XXX.XX");
+                        amount = Console.ReadLine();
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please enter a valid amount");
+                    amount = Console.ReadLine();
+                }
+
             }
 
         }
@@ -157,7 +253,7 @@ namespace GC_POSTerminalProject
                     else
                     {
                         return false;
-                    }  
+                    }
                 }
                 catch (FormatException)
                 {
@@ -235,7 +331,7 @@ namespace GC_POSTerminalProject
                 {
                     Console.WriteLine("Please enter numbers");
                 }
-                
+
             }
         }
 
