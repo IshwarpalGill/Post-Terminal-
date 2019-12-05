@@ -348,5 +348,35 @@ namespace GC_POSTerminalProject
             }
         }
 
+        //validation for restart or close
+        public static bool RestartOrClose(string input)
+        {
+            while (true)
+            {
+                try
+                {
+                    if (input.ToLower() == "restart")
+                    {
+                        return true;
+                    }
+                    else if (input.ToLower() == "close")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please type restart or close");
+                        input = Console.ReadLine();
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please type restart or close");
+                    input = Console.ReadLine();
+                }
+            }
+
+        }
+
     }
 }
