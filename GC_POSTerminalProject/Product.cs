@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace GC_POSTerminalProject
@@ -11,6 +12,9 @@ namespace GC_POSTerminalProject
         private decimal priceeach;
         private string category;
         private bool istaxable;
+        private int quantity;
+        private decimal lineTotal;
+        private decimal taxTotal;
 
         public string Name
         {
@@ -32,13 +36,52 @@ namespace GC_POSTerminalProject
             get { return istaxable; }
             set { istaxable = value; }
         }
+        public int Quantity
+        {
+            get { return quantity; }
+            set { quantity = value; }
+        }
+        public decimal LineTotal
+        {
+            get { return lineTotal; }
+            set { lineTotal = value; }
+        }
+        public decimal TaxTotal
+        {
+            get { return taxTotal; }
+            set { taxTotal = value; }
+        }
 
-        public Product(string name, decimal priceeach, string category, bool istaxable)
+        public Product()
+        {
+
+        }
+        public Product(string name, decimal priceeach, string category, bool istaxable, int quantity)
         {
             Name = name;
             PriceEach = priceeach;
             Category = category;
             IsTaxable = istaxable;
+            Quantity = quantity;
+        }
+        public Product(string name, decimal priceeach, string category, bool istaxable, int quantity, decimal linetotal)
+        {
+            Name = name;
+            PriceEach = priceeach;
+            Category = category;
+            IsTaxable = istaxable;
+            Quantity = quantity;
+            LineTotal = linetotal;
+        }
+        public Product(string name, decimal priceeach, string category, bool istaxable, int quantity, decimal linetotal, decimal taxtotal)
+        {
+            Name = name;
+            PriceEach = priceeach;
+            Category = category;
+            IsTaxable = istaxable;
+            Quantity = quantity;
+            LineTotal = linetotal;
+            TaxTotal = taxtotal;
         }
 
         public static List<Product> GetProductList()
@@ -59,7 +102,8 @@ namespace GC_POSTerminalProject
                         product[0],
                         Convert.ToDecimal(product[1]),
                         product[2],
-                        Convert.ToBoolean(product[3])));
+                        Convert.ToBoolean(product[3]),
+                        0));
                 }
                 catch (Exception ex)
                 {
