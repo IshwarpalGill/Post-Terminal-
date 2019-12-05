@@ -17,7 +17,7 @@ namespace GC_POSTerminalProject
                 try
                 {
                     inputNum = int.Parse(input);
-                    if (inputNum > 3 && inputNum < 1)
+                    if (inputNum > 3 || inputNum < 1)
                     {
                         Console.WriteLine("Please choose a number 1-3");
                         input = Console.ReadLine();
@@ -54,7 +54,7 @@ namespace GC_POSTerminalProject
                 {
                     item = int.Parse(input);
                     //again = false;
-                    if (item > 15 && item < 1)
+                    if (item > 15 || item < 1)
                     {
                         Console.WriteLine("Please choose an item 1-15");
                         input = Console.ReadLine();
@@ -104,7 +104,7 @@ namespace GC_POSTerminalProject
                 try
                 {
                     amount = int.Parse(amountString);
-                    if (amount > 10 && amount < 1)
+                    if (amount > 10 || amount < 1)
                     {
                         Console.WriteLine("Please choose an item less than 10");
                         amountString = Console.ReadLine();
