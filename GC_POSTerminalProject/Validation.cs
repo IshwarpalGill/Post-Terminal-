@@ -48,6 +48,41 @@ namespace GC_POSTerminalProject
 
         }
 
+        //Validation for amount
+        public static int ValidAmount()
+        {
+            string amountString = Console.ReadLine();
+            int amount = 0;
+            
+
+            while (true)
+            {
+                try
+                {
+                    amount = int.Parse(amountString);
+                    if (amount > 10)
+                    {
+                        Console.WriteLine("Please choose an item less than 10");
+                        amountString = Console.ReadLine();
+                    }
+                    else
+                    {
+                        return amount;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter an integer");
+                    amountString = Console.ReadLine();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please enter a number");
+                    amountString = Console.ReadLine();
+                }
+            }
+        }
+
         //validation for payment type
         public static string ValidPaymentType(string paymentType)
         {
