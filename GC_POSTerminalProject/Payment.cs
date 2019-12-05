@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-
+using System.IO;
 namespace GC_POSTerminalProject
 {
     class Payment
@@ -13,7 +13,10 @@ namespace GC_POSTerminalProject
         public static double SalesTax { set; get; }
         public static double Total { set; get; }
 
+        //Receipt methods
+        //public static void CashRecipt(List<Product> productlist)
 
+        //Payment methods
         public static double PayCash(double change)
         {
             //Get amount they are paying 
@@ -127,22 +130,22 @@ namespace GC_POSTerminalProject
             } while (cleared == false);
             return (cleared);
         }
-        public static double Tax(double subTotal)
+        public static decimal Tax(decimal subTotal)
         {
-            double saleTax = subTotal * 0.06;
+            decimal saleTax = subTotal * 0.06M;
             return (saleTax);
         }
 
-        public static double STotal(int quantity, double itemPrice)
+        public static decimal STotal(int quantity, decimal itemPrice)
         {
-            double subTotal = quantity * itemPrice;
+            decimal subTotal = quantity * itemPrice;
             return subTotal;
         }
 
 
-        public static double GrandTotal(double subTotal, double saleTax)
+        public static decimal GrandTotal(decimal subTotal, decimal saleTax)
         {
-            double grandTotal = subTotal + saleTax;
+            decimal grandTotal = subTotal + saleTax;
             return grandTotal;
         }
     }

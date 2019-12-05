@@ -39,7 +39,7 @@ namespace GC_POSTerminalProject
                         Console.WriteLine("Welcome to the shop!\n");
                         DisplayItems(productList);
 
-                        if(shoppingCart.Count > 0)
+                        if (shoppingCart.Count > 0)
                         {
                             Console.WriteLine($"\nCurrent Item(s) in Shopping Cart: {shoppingCart.Count}");
                         }
@@ -88,7 +88,7 @@ namespace GC_POSTerminalProject
             Product product = new Product();
             if (list[item - 1].IsTaxable == true)
             {
-               product = new Product(list[item - 1].Name, list[item - 1].PriceEach, list[item - 1].Category, list[item - 1].IsTaxable, quantity, list[item - 1].PriceEach * quantity, list[item - 1].PriceEach * quantity * 0.06m);
+                product = new Product(list[item - 1].Name, list[item - 1].PriceEach, list[item - 1].Category, list[item - 1].IsTaxable, quantity, list[item - 1].PriceEach * quantity, list[item - 1].PriceEach * quantity * 0.06m);
             }
             else
             {
@@ -121,6 +121,51 @@ namespace GC_POSTerminalProject
             {
                 Console.WriteLine(option);
             }
+        }
+        public static void PaymentChoice(List<Product> shoppingCart)
+        {
+            bool valid = false;
+            do
+            {
+                Console.WriteLine("Payment choice: Cash, Credit, Check..");
+                string paymentType = Console.ReadLine().ToLower();
+
+                Validation.ValidPaymentType(paymentType);
+
+                if (paymentType == "cash")
+                {
+
+                    foreach (Product item in shoppingCart)
+                    {
+                        decimal subTotal = Payment.STotal(item.Quantity, item.PriceEach);
+                        decimal saleTax = Payment.Tax(subTotal);
+                        decimal grandTotal = Payment.GrandTotal(subTotal, saleTax);
+
+                    }
+
+                }
+                else if (paymentType == "credit")
+                {
+
+                    foreach (Product item in shoppingCart)
+                    {
+                        decimal subTotal = Payment.STotal(item.Quantity, item.PriceEach);
+                        decimal salesTax = Payment.Tax(subTotal);
+                        decimal grandTotal = Payment.GrandTotal(subTotal, salesTax);
+                    }
+                }
+                else if (paymentType == "check")
+                {
+
+                    foreach (Product item in shoppingCart)
+                    {
+                        decimal subTotal = Payment.STotal(item.Quantity, item.PriceEach);
+                        decimal salesTax = Payment.Tax(subTotal);
+                        decimal grandTotal = Payment.GrandTotal(subTotal, salesTax);
+                    }
+                }
+
+            } while (valid == true);
         }
     }
 }
