@@ -17,26 +17,34 @@ namespace GC_POSTerminalProject
         //public static void CashRecipt(List<Product> productlist)
 
         //Payment methods
-        public static double PayCash(double change)
+        public static decimal PayCash(decimal grandTotal)
         {
+            decimal amount = 0m, remaining = 0m, change = 0m;
             //Get amount they are paying 
             do
             {
-                Console.WriteLine("Amount Tindered");
+                Console.WriteLine("Please enter the amount of cash you would like to apply:");
 
-                double amount = Convert.ToDouble(Console.ReadLine());
+                amount = Validation.ValidCash(Console.ReadLine());
 
-                if (amount <= Total)
+                if (amount == grandTotal)
                 {
-                    change = amount - Total;
-                    Console.WriteLine($"{change}");
+                    Console.WriteLine("Paid in full");
+                    return change;
+                }
+                else if(amount > grandTotal)
+                {
+                    change = amount - grandTotal;
+                    Console.WriteLine($"Change: {change}");
+                    return change;
                 }
                 else
                 {
-                    Console.WriteLine("Please enter valid amount");
+                    remaining = grandTotal - amount;
+                    Console.WriteLine("You owe money but Im having a brain fart");
+                    return remaining;
                 }
             } while (false);
-            return change;
         }
 
         public static bool CCPayment(bool valid)
