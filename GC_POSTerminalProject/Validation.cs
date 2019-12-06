@@ -292,7 +292,7 @@ namespace GC_POSTerminalProject
                     valCard = int.Parse(cardNum);
                     //regex pattern for Visa, MasterCard, American Express, Discover in order
                     Match getMatch = Regex.Match(cardNum,
-                    @"^4[0-9]{12}(?:[0-9]{3})? | (?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12} | 3[47][0-9]{13} 6(?:011|5[0-9]{2})[0-9]{12}$");
+                    @"^4[0-9]{12}(?:[0-9]{3})?|(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|3[47][0-9]{13} 6(?:011|5[0-9]{2})[0-9]{12}$");
 
                     if (getMatch.Success)
                     {

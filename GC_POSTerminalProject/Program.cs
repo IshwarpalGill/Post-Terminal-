@@ -151,11 +151,12 @@ namespace GC_POSTerminalProject
                 }
                 else if (paymentType == "credit" || paymentType == "credit card" || paymentType == "card")
                 {
-
+                    Payment.CCPayment(valid);
+                    
                 }
                 else if (paymentType == "check")
                 {
-
+                    Payment.CCPayment(valid);
                 }
 
             } while (valid == true);
