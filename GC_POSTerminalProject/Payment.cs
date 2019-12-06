@@ -71,7 +71,7 @@ namespace GC_POSTerminalProject
             {
                 Console.WriteLine("Please enter Credit Card Number");
 
-                int cardNumber = Validation.ValidCreditCard(Console.ReadLine());
+                char cardNumber = Validation.ValidCreditCard(Console.ReadLine());
 
                 Console.WriteLine("Please enter expiration date");
 

@@ -282,19 +282,33 @@ namespace GC_POSTerminalProject
         }
 
         //Valid for debit/credit card
-        public static int ValidCreditCard(string cardNum)
+        public static char ValidCreditCard(string cardNum)
         {
             int valCard = 0;
             while (true)
             {
                 try
                 {
-                    valCard = int.Parse(cardNum);
+                    //valCard = int.Parse(cardNum);
                     //regex pattern for Visa, MasterCard, American Express, Discover in order
-                    Match getMatch = Regex.Match(cardNum,
-                    @"^((4[0-9]{12}(?:[0-9]{3})?) | ((?:5[1-5][0-9]{2} | 222[1-9]|22[3-9][0-9] | 2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12} ) | (3[47][0-9]{13}) | (6(?:011|5[0-9]{2})[0-9]{12}))$");
+                    Match getVisa = Regex.Match(cardNum, @"^4[0-9]{12}(?:[0-9]{3})?$");
+                    Match getMC = Regex.Match(cardNum, @"^5[1-5][0-9]{14}$");
+                    Match getAmex = Regex.Match(cardNum, @"^3[47][0-9]{13}$"); 
+                    Match getDiscover = Regex.Match(cardNum, @"^3(?:0[0-5]|[68][0-9])[0-9]{11}$");
 
-                    if (getMatch.Success)
+                    if (getVisa.Success)
+                    {
+                        return cardNum[0];
+                    }
+                    else if (getMC.Success)
+                    {
+                        return cardNum[0];
+                    }
+                    else if (getAmex.Success)
+                    {
+                        return cardNum[0];
+                    }
+                    else if (getDiscover.Success)
                     {
                         return cardNum[0];
                     }
@@ -304,11 +318,11 @@ namespace GC_POSTerminalProject
                         cardNum = Console.ReadLine();
                     }
                 }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Please enter numbers");
-                    cardNum = Console.ReadLine();
-                }
+                //catch (FormatException)
+                //{
+                //    Console.WriteLine("Please enter numbers");
+                //    cardNum = Console.ReadLine();
+                //}
                 catch (Exception)
                 {
                     Console.WriteLine("Please enter card number");
@@ -344,20 +358,20 @@ namespace GC_POSTerminalProject
         }
 
         //validation for CVV number
-        public static bool ValidCVV(int cardNum, string cvv)
+        public static bool ValidCVV(char cardNum, string cvv)
         {
             int cvvNum = 0;
             while (true)
             {
                 try
                 {
-                    cvvNum = int.Parse(cvv);
+                    cvvNum = Convert.ToInt32(new string(cardNum, 1));
 
                     
                     Match cvvMatch1 = Regex.Match(cvv, @"^[0-9]{3}$");
                     Match cvvMatch2 = Regex.Match(cvv, @"^[0-9]{4}$");
 
-                    if (cardNum == 3)
+                    if (cvvNum == 3)
                     {
                         if (cvvMatch2.Success)
                         {
@@ -371,7 +385,7 @@ namespace GC_POSTerminalProject
                     }
                     else
                     {
-                        if (cvvMatch2.Success)
+                        if (cvvMatch1.Success)
                         {
                             return true;
                         }
