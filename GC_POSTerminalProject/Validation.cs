@@ -192,7 +192,37 @@ namespace GC_POSTerminalProject
                     pt = Console.ReadLine();
                 }
             }
+        }
+        //validation for just check and credit card when cash is below the total amount
+        public static string ValidSecondPaymentType(string paymentType)
+        {
+            string pt = paymentType;
+            while (true)
+            {
+                try
+                {
+                    if (pt.ToLower() == "check" || pt.ToLower() == "credit card" || pt.ToLower() == "credit" || pt.ToLower() == "card")
+                    {
+                        return pt.ToLower();
 
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid payment type:vCheck or Credit Card");
+                        pt = Console.ReadLine();
+                    }
+                }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine("Please enter check or credit card");
+                    pt = Console.ReadLine();
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please enter check or credit card");
+                    pt = Console.ReadLine();
+                }
+            }
         }
 
         public static decimal ValidCash(string amount)
