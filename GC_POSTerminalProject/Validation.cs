@@ -282,7 +282,7 @@ namespace GC_POSTerminalProject
         }
 
         //Valid for debit/credit card
-        public static bool ValidCreditCard(string cardNum)
+        public static int ValidCreditCard(string cardNum)
         {
             int valCard = 0;
             while (true)
@@ -296,11 +296,12 @@ namespace GC_POSTerminalProject
 
                     if (getMatch.Success)
                     {
-                        return true;
+                        return cardNum[0];
                     }
                     else
                     {
-                        return false;
+                        Console.WriteLine("Please retype card number");
+                        cardNum = Console.ReadLine();
                     }
                 }
                 catch (FormatException)
@@ -343,7 +344,7 @@ namespace GC_POSTerminalProject
         }
 
         //validation for CVV number
-        public static bool ValidCVV(string cardNum, string cvv)
+        public static bool ValidCVV(int cardNum, string cvv)
         {
             int cvvNum = 0;
             while (true)
@@ -352,15 +353,20 @@ namespace GC_POSTerminalProject
                 {
                     cvvNum = int.Parse(cvv);
 
-                    Match cardMatch = Regex.Match(cardNum, @"^3[47][0-9]{13}$");
+                    
                     Match cvvMatch1 = Regex.Match(cvv, @"^[0-9]{3}$");
                     Match cvvMatch2 = Regex.Match(cvv, @"^[0-9]{4}$");
 
-                    if (cardMatch.Success)
+                    if (cardNum == 3)
                     {
                         if (cvvMatch2.Success)
                         {
                             return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Please enter a valid CVV number");
+                            cvv = Console.ReadLine();
                         }
                     }
                     else
@@ -371,7 +377,8 @@ namespace GC_POSTerminalProject
                         }
                         else
                         {
-                            return false;
+                            Console.WriteLine("Please enter a valid CVV number");
+                            cvv = Console.ReadLine(); 
                         }
                     }
                 }
