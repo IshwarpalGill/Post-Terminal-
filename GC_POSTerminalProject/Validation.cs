@@ -181,6 +181,11 @@ namespace GC_POSTerminalProject
                         pt = Console.ReadLine();
                     }
                 }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine("Please enter cash, check, or credit card");
+                    pt = Console.ReadLine();
+                }
                 catch (Exception)
                 {
                     Console.WriteLine("Please enter cash, check, or credit card");

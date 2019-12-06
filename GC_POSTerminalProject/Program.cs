@@ -143,7 +143,7 @@ namespace GC_POSTerminalProject
             do
             {
                 Console.WriteLine("Payment choice: Cash, Credit, Check..");
-                string paymentType = Validation.ValidPaymentType(Console.ReadLine().ToLower());
+                string paymentType = Validation.ValidPaymentType(Console.ReadLine());
 
                 if (paymentType == "cash")
                 {
