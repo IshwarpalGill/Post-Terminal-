@@ -40,103 +40,58 @@ namespace GC_POSTerminalProject
                 }
                 else
                 {
-                    remaining = grandTotal - amount;
-                    Console.WriteLine("You owe money but Im having a brain fart");
-                    return remaining;
+                    do
+                    {
+                        remaining = grandTotal - amount;
+                        Console.WriteLine($"You owe {remaining}");
+
+                        Console.WriteLine("How would you like to pay the difference");
+
+                        string choice = Console.ReadLine().ToLower();
+
+                        if(Regex.IsMatch(choice , "credit card"))
+                        {
+                            CCPayment(true);
+                        }
+                        else if(Regex.IsMatch(choice, "check"))
+                        {
+                            CheckPayment(true);
+                        }
+                        
+                        return remaining;
+                    } while (remaining < 0);
+                    
                 }
             } while (false);
         }
 
-        public static bool CCPayment(bool valid)
+        public static bool CCPayment(bool ccNumber)
         {
-            string ccNumber;
-            string ccPattern = @"^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$";
-            string expDate;
-            string expDatePattern = @"^[0-9]{2}/[0-9]{2}$";
-            string cvv;
-            string cvvPattern = @"^[0-9]{3}$";
-
-            Regex ccRgx = new Regex(ccPattern);
-            Regex expRgx = new Regex(expDatePattern);
-            Regex cvvRgx = new Regex(cvvPattern);
-
             do
             {
-                Console.WriteLine("CC#");
-                ccNumber = Console.ReadLine();
+                Console.WriteLine("Please enter Credit Card Number");
 
-                if (ccRgx.IsMatch(ccNumber))
-                {
-                    valid = true;
-                }
-                else
-                {
-                    Console.WriteLine("Please enter valid CC#");
-                    valid = false;
-                }
-            } while (valid == false);
+                ccNumber = Validation.ValidCreditCard(Console.ReadLine());
+            } while (false);
+            return (true);
+            
 
 
-            do
-            {
-                Console.WriteLine("ExpDate");
-                expDate = Console.ReadLine();
-
-                if (expRgx.IsMatch(expDate))
-                {
-                    valid = true;
-                }
-                else
-                {
-                    Console.WriteLine("Please enter valid expiration date");
-                    valid = false;
-                }
-            } while (valid == false);
-
-            do
-            {
-                Console.WriteLine("CVV");
-                cvv = Console.ReadLine();
-
-                if (ccRgx.IsMatch(cvv))
-                {
-                    valid = true;
-                }
-                else
-                {
-                    Console.WriteLine("Please enter valid CVV");
-                    valid = false;
-                }
-
-            } while (valid == false);
-            return (valid);
         }
-        public static bool CheckPayment(bool cleared)
+        public static bool CheckPayment(bool checkNum)
         {
+            
             do
             {
-                Console.WriteLine("Please enter the amount of check");
-                double amount = Convert.ToDouble(Console.ReadLine());
+                
 
-                if (amount == Total)
-                {
-                    cleared = true;
-                }
-                else
-                {
-                    Console.WriteLine("Please valid amount");
-                    cleared = false;
-                }
-            } while (cleared == false);
-
-            do
-            {
                 Console.WriteLine("Please enter check number");
-                string checkNum = Console.ReadLine();
-                cleared = true;
 
-            } while (cleared == false);
-            return (cleared);
+                checkNum = Validation.ValidCheck(Console.ReadLine());
+                
+
+            } while (false);
+            return (true);
         }
         public static decimal Tax(decimal subTotal)
         {
