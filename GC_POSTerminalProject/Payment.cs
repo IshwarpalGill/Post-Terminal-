@@ -71,7 +71,18 @@ namespace GC_POSTerminalProject
             {
                 Console.WriteLine("Please enter Credit Card Number");
 
-                ccNumber = Validation.ValidCreditCard(Console.ReadLine());
+                int cardNumber = Validation.ValidCreditCard(Console.ReadLine());
+
+                Console.WriteLine("Please enter expiration date");
+
+                bool expNmber = Validation.ValExpirDate(Console.ReadLine());
+
+                Console.WriteLine("Please enter CVV (located on back of card)");
+
+
+                bool cvvNumber = Validation.ValidCVV(cardNumber, Console.ReadLine());
+
+
             } while (false);
             return (true);
             
