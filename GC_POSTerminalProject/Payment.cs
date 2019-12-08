@@ -45,23 +45,29 @@ namespace GC_POSTerminalProject
                         remaining = grandTotal - amount;
                         Console.WriteLine($"You owe {remaining}");
 
-                        Console.WriteLine("How would you like to pay the difference");
+                        Console.WriteLine("How would you like to pay the difference : Credit or Check");
 
                         string choice = Console.ReadLine().ToLower();
 
-                        if(Regex.IsMatch(choice , "credit card"))
+                        if(Regex.IsMatch(choice , "(credit)|(creditcard)|(credit card)"))
                         {
                             CCPayment(true);
                         }
-                        else if(Regex.IsMatch(choice, "check"))
+                        else if (Regex.IsMatch(choice, "check"))
                         {
                             CheckPayment(true);
+                        }                    
+                        else
+                        {
+                            Console.WriteLine("Please enter Cash or Check");
+
                         }
+                       
                         
-                        return remaining;
-                    } while (remaining < 0);
+                       
+                    } while (remaining != 0M);
                     
-                }
+                }return grandTotal;
             } while (false);
         }
 
