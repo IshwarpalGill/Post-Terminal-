@@ -133,7 +133,7 @@ namespace GC_POSTerminalProject
             do
             {
                 Console.WriteLine("add or remove");
-                userInput = Console.ReadLine();
+                userInput = Validation.AddOrRemove(Console.ReadLine());
 
                 if (userInput.ToLower() == "add")
                 {
@@ -143,16 +143,16 @@ namespace GC_POSTerminalProject
                     bool taxable;
 
                     Console.WriteLine("What is the name of the new product");
-                    name = Console.ReadLine();
+                    name = Validation.ValidString(Console.ReadLine());
 
                     Console.WriteLine("What is the price of the new product");
-                    price = decimal.Parse(Console.ReadLine());
+                    price = Validation.ValidDecimal(Console.ReadLine());
 
                     Console.WriteLine("What is the category of the new product");
-                    category = Console.ReadLine();
+                    category = Validation.ValidString(Console.ReadLine());
 
                     Console.WriteLine("Is the new product taxable?");
-                    taxable = bool.Parse(Console.ReadLine());
+                    taxable = Validation.YesOrNo(Console.ReadLine());
 
                     StreamWriter sw = new StreamWriter(@"..\..\..\ProductDB.txt", true);
                     sw.WriteLine("");
@@ -162,7 +162,7 @@ namespace GC_POSTerminalProject
 
                     Console.WriteLine("Item has been added. Returning to the Main Menu");
                 }
-                else
+                else if (userInput.ToLower() == "remove")
                 {
                     Program.DisplayItems(currentProductList);
                     Console.WriteLine("What item do you want to remove (Enter the number to the left of the item)");
@@ -188,6 +188,11 @@ namespace GC_POSTerminalProject
                     {
                         startOver = true;
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Input incorrect, please type in add or remove");
+                    startOver = true;
                 }
             } while (startOver == true);
         }
