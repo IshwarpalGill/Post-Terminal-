@@ -434,5 +434,113 @@ namespace GC_POSTerminalProject
 
         }
 
+        //validation for add or remove a Product
+        public static string AddOrRemove(string input)
+        {
+            while (true)
+            {
+                try
+                {
+                    if (input.ToLower() == "add" || input.ToLower() == "remove")
+                    {
+                        return input;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please type add or remove");
+                        input = Console.ReadLine();
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please type add or remove");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
+        //Validating a string
+        public static string ValidString(string input)
+        {
+            while (true)
+            {
+                try
+                {
+                    if (input.Contains(","))
+                    {
+                        Console.WriteLine("Please try again without a comma");
+                        input = Console.ReadLine();
+                    }
+                    else
+                    {
+                        return input;
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please type a valid product");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
+        //validation for decimal
+        public static decimal ValidDecimal(string input)
+        {
+            decimal validDec = 0;
+            while (true)
+            {
+                try
+                {
+                    validDec = decimal.Parse(input);
+                    Match getDecimal = Regex.Match(input, @"^[0-9]{1,4}\.[0-9]{2}$");
+                    
+                    if(getDecimal.Success)
+                    {
+                        return validDec;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please use a valid price");
+                        input = Console.ReadLine();
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please use a valid price");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
+        //Validating a yes or no and return a bool
+        public static bool YesOrNo(string input)
+        {
+            while (true)
+            {
+                try
+                {
+                    if (input.ToLower() == "yes" || input.ToLower() == "y")
+                    {
+                        return true;
+                    }
+                    else if (input.ToLower() == "no" || input.ToLower() == "n")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please type yes or no");
+                        input = Console.ReadLine();
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please type yes or no");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
     }
 }
