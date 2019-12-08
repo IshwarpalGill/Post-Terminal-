@@ -19,7 +19,8 @@ namespace GC_POSTerminalProject
         //Payment methods
         public static decimal PayCash(decimal grandTotal)
         {
-            decimal amount = 0m, remaining = 0m, change = 0m;
+            decimal amount = 0m, change = 0m;
+            bool doAgain = false;
             //Get amount they are paying 
             do
             {
@@ -30,6 +31,7 @@ namespace GC_POSTerminalProject
                 if (amount == grandTotal)
                 {
                     Console.WriteLine("Paid in full");
+                    change = grandTotal - amount;
                     return change;
                 }
                 else if(amount > grandTotal)
@@ -40,36 +42,11 @@ namespace GC_POSTerminalProject
                 }
                 else
                 {
-                    do
-                    {
-                        remaining = grandTotal - amount;
-                        Console.WriteLine($"You owe {remaining}");
-
-                        Console.WriteLine("How would you like to pay the difference : Credit or Check");
-
-                        string choice = Console.ReadLine().ToLower();
-
-                        if(Regex.IsMatch(choice , "(credit)|(creditcard)|(credit card)"))
-                        {
-                            CCPayment(true);
-                            Console.WriteLine("Accepted!");
-                        }
-                        else if (Regex.IsMatch(choice, "check"))
-                        {
-                            CheckPayment(true);
-                            Console.WriteLine("Thank you!");
-                        }                    
-                        else
-                        {
-                            Console.WriteLine("Please enter Cash or Check");
-
-                        }                     
-                        
-                       
-                    } while (remaining == 0);
-                    
-                }return grandTotal;
-            } while (false);
+                    Console.WriteLine("That is not a valid amount.");
+                    doAgain = true;
+                }
+            } while (doAgain == true);
+            return 0m;
         }
 
         public static bool CCPayment(bool ccNumber)

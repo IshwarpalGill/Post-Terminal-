@@ -284,7 +284,7 @@ namespace GC_POSTerminalProject
         //Valid for debit/credit card
         public static char ValidCreditCard(string cardNum)
         {
-            int valCard = 0;
+            //int valCard = 0;
             while (true)
             {
                 try

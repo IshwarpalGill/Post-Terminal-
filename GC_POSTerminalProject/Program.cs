@@ -145,7 +145,7 @@ namespace GC_POSTerminalProject
         }
         public static void PaymentChoice(List<Product> shoppingCart)
         {
-            decimal subTotal = 0m, salesTax = 0m, grandTotal = 0m;
+            decimal subTotal = 0m, salesTax = 0m, grandTotal = 0m, change = 0m;
 
             bool valid = false;
 
@@ -179,7 +179,10 @@ namespace GC_POSTerminalProject
 
                 if (paymentType == "cash")
                 {
-                    Payment.PayCash(grandTotal);
+                    change = Payment.PayCash(grandTotal);
+                    Thread.Sleep(5000);
+                    Console.Clear();
+                    Receipt.DisplayCashReceipt(shoppingCart, change);
                 }
                 else if (paymentType == "credit" || paymentType == "credit card" || paymentType == "card")
                 {
