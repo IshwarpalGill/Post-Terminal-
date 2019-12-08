@@ -56,6 +56,13 @@ namespace GC_POSTerminalProject
         {
 
         }
+        public Product(string name, decimal priceeach, string category, bool istaxable)
+        {
+            Name = name;
+            PriceEach = priceeach;
+            Category = category;
+            IsTaxable = istaxable;
+        }
         public Product(string name, decimal priceeach, string category, bool istaxable, int quantity)
         {
             Name = name;
@@ -115,6 +122,74 @@ namespace GC_POSTerminalProject
             reader.Close();
 
             return tempList;
+        }
+
+        public static void ModifyProductList(List<Product> currentProductList)
+        {
+            string userInput;
+            int itemSelected;
+            bool startOver = false;
+
+            do
+            {
+                Console.WriteLine("add or remove");
+                userInput = Console.ReadLine();
+
+                if (userInput.ToLower() == "add")
+                {
+                    string name;
+                    decimal price = 0m;
+                    string category;
+                    bool taxable;
+
+                    Console.WriteLine("What is the name of the new product");
+                    name = Console.ReadLine();
+
+                    Console.WriteLine("What is the price of the new product");
+                    price = decimal.Parse(Console.ReadLine());
+
+                    Console.WriteLine("What is the category of the new product");
+                    category = Console.ReadLine();
+
+                    Console.WriteLine("Is the new product taxable?");
+                    taxable = bool.Parse(Console.ReadLine());
+
+                    StreamWriter sw = new StreamWriter(@"..\..\..\ProductDB.txt", true);
+                    sw.WriteLine("");
+                    sw.Write($"{name},{price},{category},{taxable}");
+
+                    sw.Close();
+
+                    Console.WriteLine("Item has been added. Returning to the Main Menu");
+                }
+                else
+                {
+                    Program.DisplayItems(currentProductList);
+                    Console.WriteLine("What item do you want to remove (Enter the number to the left of the item)");
+                    itemSelected = Validation.ValItemFromList(Console.ReadLine(), currentProductList.Count);
+
+                    Console.WriteLine($"You are about to remove item {itemSelected}.) {currentProductList[itemSelected-1].Name} are you sure?\nIf yes, retype the administrative password, otherwise, type in cancel.");
+                    userInput = Console.ReadLine();
+                    if (userInput == "gcAdmin")
+                    {
+                        currentProductList.RemoveAt(itemSelected - 1);
+
+                        StreamWriter sw = new StreamWriter(@"..\..\..\ProductDB.txt");
+                        foreach (var product in currentProductList)
+                        {
+                            sw.WriteLine($"{product.Name},{product.PriceEach},{product.Category},{product.IsTaxable}");
+                        }
+                        sw.Close();
+                        Console.WriteLine("The Item has been removed. Returning to Main Menu");
+                        System.Threading.Thread.Sleep(5000);
+                        startOver = false;
+                    }
+                    else
+                    {
+                        startOver = true;
+                    }
+                }
+            } while (startOver == true);
         }
     }
 }

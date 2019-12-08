@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace GC_POSTerminalProject
 {
@@ -19,6 +20,8 @@ namespace GC_POSTerminalProject
                 productList = Product.GetProductList();
 
                 int inputValue = 0, itemSelected = 0, quantity = 0, cartQuantity = 0;
+                string userInput;
+                bool accessGranted = false;
 
                 Console.WriteLine("Welcome to GC Electronics!");
 
@@ -48,7 +51,7 @@ namespace GC_POSTerminalProject
                         }
 
                         Console.WriteLine("\nPlease add an item to your cart by typing in the number to the left of the item");
-                        itemSelected = Validation.ValItemFromList(Console.ReadLine());
+                        itemSelected = Validation.ValItemFromList(Console.ReadLine(), productList.Count);
                         Console.WriteLine("How many would you like to add?");
                         quantity = Validation.ValidAmount();
 
@@ -65,15 +68,37 @@ namespace GC_POSTerminalProject
                 }
                 else if (inputValue == 2)
                 {
-                    Console.WriteLine("This feature is not availble at this time but will be implemented soon.");
-                    Console.WriteLine("new action?");
-                    startOver = bool.Parse(Console.ReadLine());
+                    for (int i = 1; i < 4; i++)
+                    {
+                        Console.WriteLine("Please enter the administrative password");
+                        userInput = Console.ReadLine();
+
+                        if(userInput == "gcAdmin")
+                        {
+                            i = 50;
+                            accessGranted = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Password was incorrect. You have {3-i} attempt(s) left");
+                        }
+                    }
+                    if (accessGranted == true)
+                    {
+                        Product.ModifyProductList(productList);
+                        startOver = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Access denied. You will be returned to the main menu in 5 seconds");
+                        startOver = true;
+                        Thread.Sleep(5000);
+                    }
                 }
                 else
                 {
                     startOver = false;
                 }
-
             } while (startOver == true);
 
             Console.WriteLine("Thank you for using the POS");
@@ -109,7 +134,7 @@ namespace GC_POSTerminalProject
             List<string> actionList = new List<string>()
             {
                 new string("1) Shop"),
-                new string("2) Add or Remove Product"),
+                new string("2) Add Product"),
                 new string("3) Close POS")
             };
 

@@ -44,7 +44,7 @@ namespace GC_POSTerminalProject
 
 
         // Validation for what items are wanted
-        public static int ValItemFromList(string input)
+        public static int ValItemFromList(string input, int listCount)
         {
             int item = 0;
             //bool again = true;
@@ -54,9 +54,9 @@ namespace GC_POSTerminalProject
                 {
                     item = int.Parse(input);
                     //again = false;
-                    if (item > 15 || item < 1)
+                    if (item > listCount || item < 1)
                     {
-                        Console.WriteLine("Please choose an item 1-15");
+                        Console.WriteLine($"Please enter a number 1-{listCount}.");
                         input = Console.ReadLine();
                     }
                     else
@@ -72,19 +72,19 @@ namespace GC_POSTerminalProject
                 //}
                 catch (FormatException)
                 {
-                    Console.WriteLine("Please enter only a number 1-15.");
+                    Console.WriteLine($"Please enter only a number 1-{listCount}.");
                     input = Console.ReadLine();
                     //again = true;
                 }
                 catch (ArgumentNullException)
                 {
-                    Console.WriteLine("Please enter only a number 1-15.");
+                    Console.WriteLine($"Please enter only a number 1-{listCount}.");
                     input = Console.ReadLine();
                     //again = true;
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("Please enter a number 1-15.");
+                    Console.WriteLine($"Please enter a number 1-{listCount}.");
                     input = Console.ReadLine();
                     //again = true;
                 }
