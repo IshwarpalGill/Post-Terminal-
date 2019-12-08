@@ -134,7 +134,7 @@ namespace GC_POSTerminalProject
             List<string> actionList = new List<string>()
             {
                 new string("1) Shop"),
-                new string("2) Add Product"),
+                new string("2) Add or Remove Product"),
                 new string("3) Close POS")
             };
 
