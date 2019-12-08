@@ -52,20 +52,21 @@ namespace GC_POSTerminalProject
                         if(Regex.IsMatch(choice , "(credit)|(creditcard)|(credit card)"))
                         {
                             CCPayment(true);
+                            Console.WriteLine("Accepted!");
                         }
                         else if (Regex.IsMatch(choice, "check"))
                         {
                             CheckPayment(true);
+                            Console.WriteLine("Thank you!");
                         }                    
                         else
                         {
                             Console.WriteLine("Please enter Cash or Check");
 
-                        }
-                       
+                        }                     
                         
                        
-                    } while (remaining != 0M);
+                    } while (remaining == 0);
                     
                 }return grandTotal;
             } while (false);
