@@ -132,8 +132,9 @@ namespace GC_POSTerminalProject
 
             do
             {
-                Console.WriteLine("add or remove");
-                userInput = Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine("Welcome to the administrative options.\n\nIf you would like to add an item, type in \"add\"\nIf you would like to remove an  item, type in \"remove\"");
+                userInput = Validation.AddOrRemove(Console.ReadLine());
 
                 if (userInput.ToLower() == "add")
                 {
@@ -142,27 +143,31 @@ namespace GC_POSTerminalProject
                     string category;
                     bool taxable;
 
-                    Console.WriteLine("What is the name of the new product");
-                    name = Console.ReadLine();
+                    Console.Clear();
 
-                    Console.WriteLine("What is the price of the new product");
-                    price = decimal.Parse(Console.ReadLine());
+                    Console.WriteLine("In order to create a new item, you will need to enter the following:\na Name, the Price per Item, a Category, and whether the item is Taxable or not");
 
-                    Console.WriteLine("What is the category of the new product");
-                    category = Console.ReadLine();
+                    Console.WriteLine("\nWhat is the name of the new product");
+                    name = Validation.ValidString(Console.ReadLine());
 
-                    Console.WriteLine("Is the new product taxable?");
-                    taxable = bool.Parse(Console.ReadLine());
+                    Console.WriteLine("\nWhat is the price of the new product");
+                    price = Validation.ValidDecimal(Console.ReadLine());
+
+                    Console.WriteLine("\nWhat is the category of the new product");
+                    category = Validation.ValidString(Console.ReadLine());
+
+                    Console.WriteLine("\nIs the new product taxable? (Please enter \"yes\" or \"no\")");
+                    taxable = Validation.YesOrNo(Console.ReadLine());
 
                     StreamWriter sw = new StreamWriter(@"..\..\..\ProductDB.txt", true);
-                    sw.WriteLine("");
+                    sw.WriteLine();
                     sw.Write($"{name},{price},{category},{taxable}");
 
                     sw.Close();
 
-                    Console.WriteLine("Item has been added. Returning to the Main Menu");
+                    Console.WriteLine("\nItem has been added. Returning to the Main Menu");
                 }
-                else
+                else if (userInput.ToLower() == "remove")
                 {
                     Program.DisplayItems(currentProductList);
                     Console.WriteLine("What item do you want to remove (Enter the number to the left of the item)");
@@ -188,6 +193,11 @@ namespace GC_POSTerminalProject
                     {
                         startOver = true;
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Input incorrect, please type in add or remove");
+                    startOver = true;
                 }
             } while (startOver == true);
         }

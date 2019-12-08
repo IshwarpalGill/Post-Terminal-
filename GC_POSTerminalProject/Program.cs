@@ -25,7 +25,7 @@ namespace GC_POSTerminalProject
 
                 Console.WriteLine("Welcome to GC Electronics!");
 
-                Console.WriteLine("What would you like to do today?");
+                Console.WriteLine("\nWhat would you like to do today?");
 
                 DisplayActionList();
 
@@ -52,18 +52,18 @@ namespace GC_POSTerminalProject
 
                         Console.WriteLine("\nPlease add an item to your cart by typing in the number to the left of the item");
                         itemSelected = Validation.ValItemFromList(Console.ReadLine(), productList.Count);
-                        Console.WriteLine("How many would you like to add?");
+                        Console.WriteLine("\nHow many would you like to add?");
                         quantity = Validation.ValidAmount();
 
                         shoppingCart.Add(AddToCart(productList, itemSelected, quantity));
 
-                        Console.WriteLine("continue shopping or checkout");
+                        Console.WriteLine("\nWould you like to add another item to your cart or proceed to checkout?\nPlease type in \"continue\" or \"checkout\"");
                         continueShopping = Validation.ToContinue(Console.ReadLine());
                     } while (continueShopping == true);
 
                     PaymentChoice(shoppingCart);
 
-                    Console.WriteLine("restart or close?");
+                    Console.WriteLine("\nWould you like to make another transaction or close the terminal?\nPlease type in \"Restart\" or \"Close\"");
                     startOver = Validation.RestartOrClose(Console.ReadLine());
                 }
                 else if (inputValue == 2)
@@ -134,8 +134,8 @@ namespace GC_POSTerminalProject
             List<string> actionList = new List<string>()
             {
                 new string("1) Shop"),
-                new string("2) Add Product"),
-                new string("3) Close POS")
+                new string("2) Add or Remove Product"),
+                new string("3) Close POS\n")
             };
 
             foreach (var option in actionList)
@@ -149,6 +149,7 @@ namespace GC_POSTerminalProject
 
             bool valid = false;
 
+            Console.WriteLine();
 
             foreach (Product item in shoppingCart)
             {
@@ -157,17 +158,23 @@ namespace GC_POSTerminalProject
             }
             grandTotal = Math.Round((Payment.GrandTotal(subTotal, salesTax)),2, MidpointRounding.ToZero);
 
-            Console.WriteLine("You have selected the following items:");
+            Console.WriteLine("You have selected the following items:\n");
             foreach (var product in shoppingCart)
             {
                 Console.WriteLine($"{product.Quantity} x {product.Name} @ {product.PriceEach.ToString("C2")}");
             }
 
-            Console.WriteLine($"Subtotal: {subTotal.ToString("C2")}\nSales Tax: {salesTax.ToString("C2")}\nGrand Total: {grandTotal.ToString("C2")}");
+            Console.WriteLine($"\nSubtotal: {subTotal.ToString("C2")}\nSales Tax: {salesTax.ToString("C2")}\n\nGrand Total: {grandTotal.ToString("C2")}\n");
+
+            Console.WriteLine("Continuing to Checkout screen in 5 seconds");
+            Thread.Sleep(5000);
 
             do
             {
-                Console.WriteLine("Payment choice: Cash, Credit, Check..");
+                Console.Clear();
+                Console.WriteLine($"Grand Total: {grandTotal.ToString("C2")}\n");
+                
+                Console.WriteLine("\nPayment choice: Cash, Credit, Check..");
                 string paymentType = Validation.ValidPaymentType(Console.ReadLine());
 
                 if (paymentType == "cash")
@@ -181,7 +188,7 @@ namespace GC_POSTerminalProject
                 }
                 else if (paymentType == "check")
                 {
-                    Payment.CCPayment(valid);
+                    Payment.CheckPayment(valid);
                 }
 
             } while (valid == true);
