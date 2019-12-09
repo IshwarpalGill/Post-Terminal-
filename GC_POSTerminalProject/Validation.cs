@@ -464,6 +464,31 @@ namespace GC_POSTerminalProject
             }
         }
 
+        public static string ValidCat(string input)
+        {
+            while (true)
+            {
+                try
+                {
+                    Match getCat = Regex.Match(input, @"^([A-Za-z\s*]{1,30})$");
+                    if (getCat.Success)
+                    {
+                        return input;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid category (capital letter beginning each word)");
+                        input = Console.ReadLine();
+                    }
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Please enter a valid category");
+                    input = Console.ReadLine();
+                }
+            }
+        }
+
         //validation for decimal
         public static decimal ValidDecimal(string input)
         {

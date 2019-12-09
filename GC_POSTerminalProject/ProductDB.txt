@@ -13,3 +13,4 @@ Canon - EOS M50 Mirrorless Camera,599.99,Camera,True
 Samsung - 70" 4K UHD HDR,549.99,TV,True
 Xbox One X,349.99,Gaming,True
 Bose® - SoundLink® Wireless,179.99,Headphones,True
+Nintendo Switch,299.99,Entertainment,True

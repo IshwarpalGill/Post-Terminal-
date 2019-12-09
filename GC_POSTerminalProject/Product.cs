@@ -154,7 +154,7 @@ namespace GC_POSTerminalProject
                     price = Validation.ValidDecimal(Console.ReadLine());
 
                     Console.WriteLine("\nWhat is the category of the new product");
-                    category = Validation.ValidString(Console.ReadLine());
+                    category = Validation.ValidCat(Console.ReadLine());
 
                     Console.WriteLine("\nIs the new product taxable? (Please enter \"yes\" or \"no\")");
                     taxable = Validation.YesOrNo(Console.ReadLine());
