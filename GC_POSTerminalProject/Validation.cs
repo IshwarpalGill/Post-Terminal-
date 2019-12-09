@@ -380,6 +380,7 @@ namespace GC_POSTerminalProject
                 catch (Exception)
                 {
                     Console.WriteLine("Please enter numbers");
+                    cvv = Console.ReadLine();
                 }
 
             }
