@@ -8,14 +8,18 @@ namespace GC_POSTerminalProject
 {
     class Product
     {
+        #region private fields
         private string name;
         private decimal priceeach;
+        private string description;
         private string category;
         private bool istaxable;
         private int quantity;
         private decimal lineTotal;
         private decimal taxTotal;
+        #endregion
 
+        #region properties
         public string Name
         {
             get { return name; }
@@ -30,6 +34,11 @@ namespace GC_POSTerminalProject
         {
             get { return category; }
             set { category = value; }
+        }
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
         }
         public bool IsTaxable
         {
@@ -51,7 +60,9 @@ namespace GC_POSTerminalProject
             get { return taxTotal; }
             set { taxTotal = value; }
         }
+        #endregion
 
+        #region Constructors
         public Product()
         {
 
@@ -63,12 +74,21 @@ namespace GC_POSTerminalProject
             Category = category;
             IsTaxable = istaxable;
         }
-        public Product(string name, decimal priceeach, string category, bool istaxable, int quantity)
+        public Product(string name, decimal priceeach, string category, bool istaxable, string description)
         {
             Name = name;
             PriceEach = priceeach;
             Category = category;
             IsTaxable = istaxable;
+            Description = description;
+        }
+        public Product(string name, decimal priceeach, string category, bool istaxable, string description, int quantity)
+        {
+            Name = name;
+            PriceEach = priceeach;
+            Category = category;
+            IsTaxable = istaxable;
+            Description = description;
             Quantity = quantity;
         }
         public Product(string name, decimal priceeach, string category, bool istaxable, int quantity, decimal linetotal)
@@ -90,7 +110,10 @@ namespace GC_POSTerminalProject
             LineTotal = linetotal;
             TaxTotal = taxtotal;
         }
+        #endregion
 
+        #region Methods
+        //Creates List
         public static List<Product> GetProductList()
         {
             List<Product> tempList = new List<Product>();
@@ -110,6 +133,7 @@ namespace GC_POSTerminalProject
                         Convert.ToDecimal(product[1]),
                         product[2],
                         Convert.ToBoolean(product[3]),
+                        product[4],
                         0));
                 }
                 catch (Exception ex)
@@ -138,9 +162,8 @@ namespace GC_POSTerminalProject
 
                 if (userInput.ToLower() == "add")
                 {
-                    string name;
+                    string name, category, description;
                     decimal price = 0m;
-                    string category;
                     bool taxable;
 
                     Console.Clear();
@@ -149,6 +172,9 @@ namespace GC_POSTerminalProject
 
                     Console.WriteLine("\nWhat is the name of the new product");
                     name = Validation.ValidString(Console.ReadLine());
+
+                    Console.WriteLine("\nWhat is the description of the new product");
+                    description = Validation.ValidString(Console.ReadLine());
 
                     Console.WriteLine("\nWhat is the price of the new product");
                     price = Validation.ValidDecimal(Console.ReadLine());
@@ -161,7 +187,7 @@ namespace GC_POSTerminalProject
 
                     StreamWriter sw = new StreamWriter(@"..\..\..\ProductDB.txt", true);
                     sw.WriteLine();
-                    sw.Write($"{name},{price},{category},{taxable}");
+                    sw.Write($"{name},{price},{category},{taxable},{description}");
 
                     sw.Close();
 
@@ -182,7 +208,7 @@ namespace GC_POSTerminalProject
                         StreamWriter sw = new StreamWriter(@"..\..\..\ProductDB.txt");
                         foreach (var product in currentProductList)
                         {
-                            sw.WriteLine($"{product.Name},{product.PriceEach},{product.Category},{product.IsTaxable}");
+                            sw.WriteLine($"{product.Name},{product.PriceEach},{product.Category},{product.IsTaxable}, {product.Description}");
                         }
                         sw.Close();
                         Console.WriteLine("The Item has been removed. Returning to Main Menu");
@@ -201,5 +227,6 @@ namespace GC_POSTerminalProject
                 }
             } while (startOver == true);
         }
+        #endregion
     }
 }
