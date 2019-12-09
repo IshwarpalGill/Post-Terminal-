@@ -186,12 +186,22 @@ namespace GC_POSTerminalProject
                 }
                 else if (paymentType == "credit" || paymentType == "credit card" || paymentType == "card")
                 {
-                    Payment.CCPayment(valid);
-                    
+                    Console.WriteLine("Please enter your credit card number");
+                    string ccNumber = Validation.ValidCreditCard(Console.ReadLine());
+                    Payment.CCPayment(ccNumber);
+                    Console.WriteLine("Please wait");
+                    Thread.Sleep(5000);
+                    Console.Clear();
+                    Receipt.DisplayCreditCardReceipt(shoppingCart, ccNumber);
                 }
                 else if (paymentType == "check")
                 {
-                    Payment.CheckPayment(valid);
+                    Console.WriteLine("Please enter your check number");
+                    int checknum = Validation.ValidCheck(Console.ReadLine());
+                    Console.WriteLine("Please wait");
+                    Thread.Sleep(5000);
+                    Console.Clear();
+                    Receipt.DisplayCheckReceipt(shoppingCart, checknum);
                 }
 
             } while (valid == true);

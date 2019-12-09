@@ -7,15 +7,6 @@ namespace GC_POSTerminalProject
 {
     class Payment
     {
-        //Properties
-
-        public static double SubTotal { set; get; }
-        public static double SalesTax { set; get; }
-        public static double Total { set; get; }
-
-        //Receipt methods
-        //public static void CashRecipt(List<Product> productlist)
-
         //Payment methods
         public static decimal PayCash(decimal grandTotal)
         {
@@ -49,13 +40,11 @@ namespace GC_POSTerminalProject
             return 0m;
         }
 
-        public static bool CCPayment(bool ccNumber)
+        public static bool CCPayment(string ccNumber)
         {
             do
             {
-                Console.WriteLine("Please enter Credit Card Number");
-
-                char cardNumber = Validation.ValidCreditCard(Console.ReadLine());
+                char cardNumber = ccNumber[0];
 
                 Console.WriteLine("Please enter expiration date");
 
@@ -63,31 +52,20 @@ namespace GC_POSTerminalProject
 
                 Console.WriteLine("Please enter CVV (located on back of card)");
 
-
                 bool cvvNumber = Validation.ValidCVV(cardNumber, Console.ReadLine());
-
-
-            } while (false);
-            return (true);
-            
-
-
-        }
-        public static bool CheckPayment(bool checkNum)
-        {
-            
-            do
-            {
-                
-
-                Console.WriteLine("Please enter check number");
-
-                checkNum = Validation.ValidCheck(Console.ReadLine());
-                
-
             } while (false);
             return (true);
         }
+        //public static bool CheckPayment(int checknum)
+        //{
+        //    int checkNum = 0;
+        //    do
+        //    {
+        //        Console.WriteLine("Please enter check number");
+        //        checkNum = Validation.ValidCheck(Console.ReadLine());
+        //    } while (false);
+        //    return (true);
+        //}
         public static decimal Tax(decimal subTotal)
         {
             decimal saleTax = subTotal * 0.06M;

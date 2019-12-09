@@ -256,21 +256,21 @@ namespace GC_POSTerminalProject
         }
 
         //validation for checks
-        public static bool ValidCheck(string checkNum)
+        public static int ValidCheck(string checkNum)
         {
-
             while (true)
             {
                 try
                 {
-                    Match getMatch = Regex.Match(checkNum, @"^([0 - 9]{0,9})\d$");
+                    Match getMatch = Regex.Match(checkNum, @"^([0-9]{1,9})\d$");
                     if (getMatch.Success)
                     {
-                        return true;
+                        return int.Parse(checkNum);
                     }
                     else
                     {
-                        return false;
+                        Console.WriteLine("There was an error with your check number, please try again.");
+                        checkNum = Console.ReadLine();
                     }
                 }
                 catch (Exception)
@@ -282,7 +282,7 @@ namespace GC_POSTerminalProject
         }
 
         //Valid for debit/credit card
-        public static char ValidCreditCard(string cardNum)
+        public static string ValidCreditCard(string cardNum)
         {
             //int valCard = 0;
             while (true)
@@ -291,26 +291,11 @@ namespace GC_POSTerminalProject
                 {
                     //valCard = int.Parse(cardNum);
                     //regex pattern for Visa, MasterCard, American Express, Discover in order
-                    Match getVisa = Regex.Match(cardNum, @"^4[0-9]{12}(?:[0-9]{3})?$");
-                    Match getMC = Regex.Match(cardNum, @"^5[1-5][0-9]{14}$");
-                    Match getAmex = Regex.Match(cardNum, @"^3[47][0-9]{13}$"); 
-                    Match getDiscover = Regex.Match(cardNum, @"^3(?:0[0-5]|[68][0-9])[0-9]{11}$");
+                    Match verifyCC = Regex.Match(cardNum, @"^4[0-9]{15}?$|^5[0-9]{15}$|^6[0-9]{15}$|^3[0-9]{14}$");
 
-                    if (getVisa.Success)
+                    if (verifyCC.Success)
                     {
-                        return cardNum[0];
-                    }
-                    else if (getMC.Success)
-                    {
-                        return cardNum[0];
-                    }
-                    else if (getAmex.Success)
-                    {
-                        return cardNum[0];
-                    }
-                    else if (getDiscover.Success)
-                    {
-                        return cardNum[0];
+                        return cardNum;
                     }
                     else
                     {
@@ -318,11 +303,6 @@ namespace GC_POSTerminalProject
                         cardNum = Console.ReadLine();
                     }
                 }
-                //catch (FormatException)
-                //{
-                //    Console.WriteLine("Please enter numbers");
-                //    cardNum = Console.ReadLine();
-                //}
                 catch (Exception)
                 {
                     Console.WriteLine("Please enter card number");
