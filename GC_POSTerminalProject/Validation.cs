@@ -326,7 +326,8 @@ namespace GC_POSTerminalProject
                     }
                     else
                     {
-                        return false;
+                        Console.WriteLine("Please enter a valid date (MM/YY)");
+                        cardDate = Console.ReadLine();
                     }
                 }
                 catch (Exception)

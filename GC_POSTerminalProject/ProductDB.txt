@@ -14,3 +14,4 @@ Samsung - 70" 4K UHD HDR,549.99,TV,True,4K TK made by Samsung
 Xbox One X,349.99,Gaming,True,Gaming System made by Microsoft
 Bose® - SoundLink® Wireless,179.99,Headphones,True,Headphones made by Bose®
 Nintendo Switch,299.99,Gaming,True,Gaming System made by Nintendo Entertainment
+iPhone 11 Pro,1099.99,Phone,True,Phone made by Apple
