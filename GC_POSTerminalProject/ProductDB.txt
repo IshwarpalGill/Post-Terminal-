@@ -1,16 +1,16 @@
-Samsung Galaxy Tab S6 10.5" 128 gb,649.99,Tablets,True
-Samsung Harmon Kardon 330w Soundbar,799.99,Sound and Audio,True
-Sony - WH-1000XM3 Wireless Noise Canceling Over-the-Ear Headphones,349.99,Headphones,True
-HP - Envy 5014 Wireless All-In-One Printer,119.99,Printers,True
-WD - Easystore 12TB External USB 3.0 Hard Drive,279.99,External Storage,True
-Playstation 4,199.99,Gaming,True
-Roku 4K Streaming Stick,29.99,Smart Device,True
-Samsung 55' 4K HDR TV,329.99,TV,True
-Ish's laptop (or MSI Laptop i7 1 TB nvidia 2060),1399.99,Laptop,True
-Razer Blade 15.6" Laptop i7 NVIDIA RTX 2060,2399.99,Laptop,True
-Google Home,79.99,Smart Device,True
-Canon - EOS M50 Mirrorless Camera,599.99,Camera,True
-Samsung - 70" 4K UHD HDR,549.99,TV,True
-Xbox One X,349.99,Gaming,True
-Bose® - SoundLink® Wireless,179.99,Headphones,True
-Nintendo Switch,299.99,Entertainment,True
+Samsung Galaxy Tab S6 10.5" 128 gb,649.99,Tablets,True,Tablet made by Samsung
+Samsung Harmon Kardon 330w Soundbar,799.99,Sound and Audio,True,Soundbar made by Samsung
+Sony - WH-1000XM3 Wireless Noise Canceling Over-the-Ear Headphones,349.99,Headphones,True,Headphones made by Sony and are Noise-Canceling
+HP - Envy 5014 Wireless All-In-One Printer,119.99,Printers,True,Printer made by HP and is wireless
+WD - Easystore 12TB External USB 3.0 Hard Drive,279.99,External Storage,True,Enternal Hard Drive
+Playstation 4,199.99,Gaming,True,Gaming System made by Sony
+Roku 4K Streaming Stick,29.99,Smart Device,True,Streaming Device that dispalys 4K
+Samsung 55' 4K HDR TV,329.99,TV,True,4K TV made by Samsung
+MSI Laptop i7 1 TB nvidia 2060,1399.99,Laptop,True,Laptop that is for day-to-day tasks and can be used for gaming
+Razer Blade 15.6" Laptop i7 NVIDIA RTX 2060,2399.99,Laptop,True,Laptop made by Razer, which can be used for gaming
+Google Home,79.99,Smart Device,True,Device that can be talked to and told to do certain tasks such as play music and answer questions
+Canon - EOS M50 Mirrorless Camera,599.99,Camera,True,Camera made by Canon that is similiar to DSLR but does not have mirrors in it
+Samsung - 70" 4K UHD HDR,549.99,TV,True,4K TK made by Samsung
+Xbox One X,349.99,Gaming,True,Gaming System made by Microsoft
+Bose® - SoundLink® Wireless,179.99,Headphones,True,Headphones made by Bose®
+Nintendo Switch,299.99,Gaming,True,Gaming System made by Nintendo Entertainment
