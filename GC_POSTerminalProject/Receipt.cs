@@ -28,9 +28,9 @@ namespace GC_POSTerminalProject
                 Console.WriteLine($"{product.Quantity} x {product.Name} @ {product.PriceEach.ToString("C2")}");
             }
             Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine(string.Format("{0,-10} {1,35}", $"Subtotal:", $"{subTotal.ToString("C2")}"));
-            Console.WriteLine(string.Format("{0,-10} {1,35}", $"Sales Tax:", $"{salesTax.ToString("C2")}"));
-            Console.WriteLine(string.Format("{0,-10} {1,33}", $"Grand Total:", $"{grandTotal.ToString("C2")}"));
+            Console.WriteLine(string.Format("{0,-18} {1,30}", $"Subtotal:", $"{subTotal.ToString("C2")}"));
+            Console.WriteLine(string.Format("{0,-18} {1,30}", $"Sales Tax:", $"{salesTax.ToString("C2")}"));
+            Console.WriteLine(string.Format("{0,-18} {1,30}", $"Grand Total:", $"{grandTotal.ToString("C2")}"));
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine("-------------------------------------------------");
             Console.WriteLine("Payment Type: Cash");
